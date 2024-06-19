@@ -1,13 +1,24 @@
 
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
-  const handleLogin = () => {
-    // 로그인 로직 구현
-    console.log('로그인 시도:', username, password);
+  const [data, setData] = useState('');
+
+  const handleLogin = () => {    // 로그인 로직 구현
+    
+
+    console.log('API 요청 전송 전');
+  axios.get('/main')
+    .then(res => {
+      setData(res.data);
+      console.log('API 응답:', res.data);
+    })
+    .catch(err => {
+      console.error('API 요청 실패:', err);
+    });
   };
 
   return (
