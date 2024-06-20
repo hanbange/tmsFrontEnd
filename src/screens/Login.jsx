@@ -7,19 +7,18 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [data, setData] = useState('');
 
-  const handleLogin = () => {    // 로그인 로직 구현
-    
+  const handleLogin = () => {    // 로그인 로직 구현    
 
     console.log('API 요청 전송 전');
-  axios.get('/main')
-    .then(res => {
-      setData(res.data);
-      console.log('API 응답:', res.data);
-    })
-    .catch(err => {
-      console.error('API 요청 실패:', err);
-    });
-  };
+    axios.post('/main/auth/login', { username, password })
+      .then(res => {
+        setData(res.data);
+        console.log('API 응답:', res.data);
+      })
+      .catch(err => {
+        console.error('API 요청 실패:', err);
+      });
+    };
 
   return (
     <div style={{ padding: '20px' }}>
